@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < winningConditions.length; i++) {
             const [a, b, c] = winningConditions[i];
             if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                highlightWinningMoves(a,b,c);
                 return board[a];
             }
         }
@@ -154,7 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cells.forEach(cell => cell.classList.remove('highlight'));
         cells[index].classList.add('highlight');
     }
-
+    function highlightWinningMoves(index1,index2,index3) {
+        cells.forEach(cell => cell.classList.remove('highlight'));
+        cells[index1].classList.add('highlight');
+        cells[index2].classList.add('highlight');
+        cells[index3].classList.add('highlight');
+    }
     cells.forEach(cell => cell.addEventListener('click', CellClick));
     resetButton.addEventListener('click', ResetGame);
     playerVsPlayerButton.addEventListener('click', () => GameModeChange('PVP'));
